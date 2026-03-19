@@ -1,0 +1,25 @@
+{
+  "name": "clippy-ai",
+  "version": "1.0.0",
+  "description": "Clippy AI - The classic Office paperclip assistant, reborn for Claude Code",
+  "main": "main.js",
+  "scripts": {
+    "build": "npx esbuild renderer/app.js --bundle --outfile=renderer/bundle.js --format=iife --platform=browser",
+    "start": "node launch.js",
+    "dev": "npm run build && node launch.js",
+    "setup": "npm install && npm run build && node install-hooks.js",
+    "install-hooks": "node install-hooks.js",
+    "uninstall-hooks": "node install-hooks.js --uninstall",
+    "uninstall": "node install-hooks.js --uninstall"
+  },
+  "dependencies": {
+    "clippyjs": "^0.1.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "author": "Oliver Grill",
+  "license": "CC-BY-NC-4.0",
+  "keywords": ["clippy", "claude", "claude-code", "desktop-assistant", "electron"]
+}

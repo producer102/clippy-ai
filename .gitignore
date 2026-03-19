@@ -1,0 +1,11 @@
+node_modules/
+clippy.log
+clippy-ai.log
+screenshot*.png
+*.output
+assets/icon-data.json
+launch-test.js
+main-test.js
+create-icon.js
+start.bat
+hooks/notify.sh
