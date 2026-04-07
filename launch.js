@@ -2,7 +2,7 @@ const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
 
-const electronPath = path.join(__dirname, "node_modules", "electron", "dist", "electron.exe");
+const electronPath = require("electron");
 const logPath = path.join(__dirname, "clippy.log");
 
 // Build clean env WITHOUT ELECTRON_RUN_AS_NODE

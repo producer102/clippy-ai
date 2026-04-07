@@ -174,16 +174,25 @@ app.on("ready", () => {
   // Click-to-Focus: bring VSCode to front (10)
   ipcMain.on("focus-vscode", () => {
     try {
-      // Temporarily drop alwaysOnTop so VSCode can grab focus
+      // Temporarily drop alwaysOnTop so target app can grab focus
       if (win) win.setAlwaysOnTop(false);
       const { exec } = require("child_process");
-      const script = path.join(__dirname, "hooks", "focus-vscode.ps1");
-      exec(`powershell.exe -NoProfile -File "${script}"`, { timeout: 3000 },
-        (err) => {
-          if (err) console.log("focus-vscode err:", err.message);
-          // Restore alwaysOnTop after a short delay
-          setTimeout(() => { if (win && !win.isDestroyed()) win.setAlwaysOnTop(true); }, 500);
-        });
+
+      if (process.platform === "darwin") {
+        const script = path.join(__dirname, "hooks", "focus-vscode.scpt");
+        exec(`osascript "${script}"`, { timeout: 3000 },
+          (err) => {
+            if (err) console.log("focus-vscode err:", err.message);
+            setTimeout(() => { if (win && !win.isDestroyed()) win.setAlwaysOnTop(true); }, 500);
+          });
+      } else {
+        const script = path.join(__dirname, "hooks", "focus-vscode.ps1");
+        exec(`powershell.exe -NoProfile -File "${script}"`, { timeout: 3000 },
+          (err) => {
+            if (err) console.log("focus-vscode err:", err.message);
+            setTimeout(() => { if (win && !win.isDestroyed()) win.setAlwaysOnTop(true); }, 500);
+          });
+      }
     } catch (e) { console.log("focus-vscode err:", e.message); }
   });
 
