@@ -88,7 +88,7 @@ Also because watching an AI write code while a cartoon paperclip judges both of 
 
 PRs welcome! Some ideas:
 
-- macOS / Linux support
+- Linux support
 - More animations and reactions
 - Additional languages
 - Custom Clippy skins
